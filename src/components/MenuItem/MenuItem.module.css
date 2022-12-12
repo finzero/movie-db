@@ -1,0 +1,10 @@
+.active{
+  background: #222a31;
+  color: #f83646;
+  font-weight: 700;
+}
+
+.menuItem {
+  padding: 5px 20px;
+  cursor: pointer;
+}
