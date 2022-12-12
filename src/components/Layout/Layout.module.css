@@ -1,0 +1,16 @@
+.main {
+  display: flex;
+  width: calc(100vw - 20px);
+  min-height: calc(100vh - 20px);
+  background: #fff;
+  /* border-radius: 10px; */
+  overflow: hidden;
+  /* margin: 10px; */
+}
+
+.content {
+  background: #222a31;
+  width: 100%;
+  color: #ffffff;
+  margin-left: 200px;
+}
