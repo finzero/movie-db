@@ -2,6 +2,8 @@ import appStyle from '../../App.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import style from './MenuItem.module.css';
+import { useDispatch } from 'react-redux';
+import { setActiveMenu } from '../../features/menuSlice';
 
 export interface IMenuItem {
   id: number;
@@ -10,14 +12,11 @@ export interface IMenuItem {
   link: string;
 }
 
-interface IMenuItemProp extends IMenuItem {
-  menuClick: (id: number) => void;
-}
-
-const MenuItem = ({ id, isActive, label, link, menuClick }: IMenuItemProp) => {
+const MenuItem = ({ id, isActive, label, link }: IMenuItem) => {
+  const dispatch = useDispatch();
   return (
     <div
-      onClick={() => menuClick(id)}
+      onClick={() => dispatch(setActiveMenu(id))}
       className={`${style.menuItem} ${isActive ? style.active : ''} ${
         appStyle.flexBetweenCenter
       }`}
