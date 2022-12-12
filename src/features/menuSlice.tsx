@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { createSelector } from '@reduxjs/toolkit';
+import { RootState } from '../store/store';
+import { IMenuItem } from '../components/MenuItem/MenuItem';
 
-const initialState = [
+const initialState: IMenuItem[] = [
   { id: 1, label: 'New Releases', link: '', isActive: true },
   { id: 2, label: 'Trending', link: '', isActive: false },
   { id: 3, label: 'Comming Soon', link: '', isActive: false },
@@ -20,6 +23,11 @@ const menuSlice = createSlice({
     },
   },
 });
+
+export const activeMenuSelector = createSelector(
+  (state: RootState) => state.menu,
+  (menu) => menu.find((m: IMenuItem) => m.isActive)
+);
 
 export const { setActiveMenu } = menuSlice.actions;
 
