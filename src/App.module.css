@@ -14,6 +14,20 @@
   margin-top: 3em;
 }
 
+.dFlex{
+  display: flex;
+}
+
+.flexBetweenCenter{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.justifyContentBetween{
+  justify-content: space-between;
+}
+
 .movieList {
   display: flex;
   gap: 20px;
