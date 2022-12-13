@@ -6,7 +6,7 @@
 
 .content {
   background: #222a31;
-  width: 100%;
+  width: calc(100vw - 200px);
   color: #ffffff;
   margin-left: 200px;
   min-height: 100vh;
