@@ -4,11 +4,16 @@ import { RootState } from '../store/store';
 import { IMenuItem } from '../components/MenuItem/MenuItem';
 
 const initialState: IMenuItem[] = [
-  { id: 1, label: 'New Releases', link: '', isActive: true },
-  { id: 2, label: 'Trending', link: '', isActive: false },
-  { id: 3, label: 'Comming Soon', link: '', isActive: false },
-  { id: 4, label: 'Favourites', link: '', isActive: false },
-  { id: 5, label: 'Watch Later', link: '', isActive: false },
+  {
+    id: 1,
+    code: 'now_playing',
+    label: 'Now Playing',
+    link: '',
+    isActive: true,
+  },
+  { id: 2, code: 'popular', label: 'Popular', link: '', isActive: false },
+  { id: 3, code: 'top_rated', label: 'Top Rated', link: '', isActive: false },
+  { id: 4, code: 'upcoming', label: 'Upcoming', link: '', isActive: false },
 ];
 
 const menuSlice = createSlice({

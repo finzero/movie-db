@@ -4,9 +4,11 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import style from './MenuItem.module.css';
 import { useDispatch } from 'react-redux';
 import { setActiveMenu } from '../../features/menuSlice';
+import { TMovieCategory } from '../../services/movieService';
 
 export interface IMenuItem {
   id: number;
+  code: TMovieCategory;
   isActive: boolean;
   label: string;
   link: string;
