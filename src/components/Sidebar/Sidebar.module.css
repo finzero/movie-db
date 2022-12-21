@@ -21,3 +21,9 @@
 .sidebarMenu {
   color: #ffffff;
 }
+
+@media screen and (max-width: 425px) {
+  .sidebar{
+    display: none;
+  }
+}

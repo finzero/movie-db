@@ -39,3 +39,9 @@
   gap: 20px;
   flex-wrap: wrap;
 }
+
+@media screen and (max-width: 425px) {
+  .movieList{
+    justify-content: center;
+  }
+}
