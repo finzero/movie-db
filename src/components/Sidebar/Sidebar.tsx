@@ -1,6 +1,6 @@
 import style from './Sidebar.module.css';
 import appStyle from '../../App.module.css';
-import MenuItem, { ICategory } from '../MenuItem/Category';
+import MenuItem, { ICategory } from '../Category/Category';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
