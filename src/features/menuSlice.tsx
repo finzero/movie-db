@@ -1,8 +1,8 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../store/store';
-import { IMenuItem } from '../components/MenuItem/MenuItem';
+import { ICategory } from '../components/MenuItem/Category';
 
-const initialState: IMenuItem[] = [
+const initialState: ICategory[] = [
   {
     id: 1,
     code: 'now_playing',
@@ -30,7 +30,7 @@ const menuSlice = createSlice({
 
 export const activeMenuSelector = createSelector(
   (state: RootState) => state.menu,
-  (menu) => menu.find((m: IMenuItem) => m.isActive === true)
+  (menu) => menu.find((m: ICategory) => m.isActive === true)
 );
 
 export const { setActiveMenu } = menuSlice.actions;
