@@ -1,5 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { createSelector } from '@reduxjs/toolkit';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../store/store';
 import { IMenuItem } from '../components/MenuItem/MenuItem';
 
@@ -31,7 +30,7 @@ const menuSlice = createSlice({
 
 export const activeMenuSelector = createSelector(
   (state: RootState) => state.menu,
-  (menu) => menu.find((m: IMenuItem) => m.isActive)
+  (menu) => menu.find((m: IMenuItem) => m.isActive === true)
 );
 
 export const { setActiveMenu } = menuSlice.actions;
