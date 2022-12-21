@@ -5,8 +5,13 @@ const API_TOKEN =
 const BASE_URL = 'https://api.themoviedb.org/3';
 export const poster_base_path = 'https://image.tmdb.org/t/p/original/';
 
+interface IDates {
+  maximum: string;
+  minimum: string;
+}
+
 export interface IMovieQuery {
-  dates: any;
+  dates: IDates;
   page: number;
   results: IMovie[];
   total_pages: number;
