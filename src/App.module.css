@@ -33,25 +33,3 @@
 .justifyContentBetween {
   justify-content: space-between;
 }
-
-.movieList {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.pagination {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-}
-
-.pagination button {
-  color: #ffffff;
-}
-
-@media screen and (max-width: 425px) {
-  .movieList {
-    justify-content: center;
-  }
-}

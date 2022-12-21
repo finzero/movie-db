@@ -1,0 +1,31 @@
+.movieList {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination button {
+  color: #ffffff;
+}
+
+.loading {
+  min-width: calc(100vw - 200px);
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 425px) {
+  .movieList {
+    justify-content: center;
+  }
+
+  .loading{
+    min-width: 100vw;
+  }
+}

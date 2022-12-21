@@ -6,7 +6,7 @@ const MovieLayout = ({ children }: PropsWithChildren) => {
   return (
     <section className={style.movieLayout}>
       <SearchMovie />
-      <div className={style.movieList}>{children}</div>
+      <div>{children}</div>
     </section>
   );
 };
