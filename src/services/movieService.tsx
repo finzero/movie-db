@@ -37,9 +37,10 @@ export const getMovieGenre = () => {
 };
 
 export const getMovieByCategory = (
-  type: TMovieCategory
+  type: TMovieCategory,
+  page: number
 ): Promise<IMovieQuery> => {
-  return fetch(`${BASE_URL}/movie/${type}`, {
+  return fetch(`${BASE_URL}/movie/${type}?page=${page}`, {
     method: 'get',
     headers,
   }).then((res) => res.json());

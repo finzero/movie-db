@@ -14,23 +14,23 @@
   margin-top: 3em;
 }
 
-.dFlex{
+.dFlex {
   display: flex;
 }
 
-.flexBetweenCenter{
+.flexBetweenCenter {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.flexCenterCenter{
+.flexCenterCenter {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.justifyContentBetween{
+.justifyContentBetween {
   justify-content: space-between;
 }
 
@@ -40,8 +40,18 @@
   flex-wrap: wrap;
 }
 
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination button {
+  color: #ffffff;
+}
+
 @media screen and (max-width: 425px) {
-  .movieList{
+  .movieList {
     justify-content: center;
   }
 }

@@ -4,24 +4,30 @@ import MovieLayout from './components/Layout/MovieLayout';
 import style from './App.module.css';
 import movieLoader from './assets/5-Film-reel.gif';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { useQuery } from 'react-query';
+import { useEffect, useState } from 'react';
+import { useQuery, QueryKey } from 'react-query';
 import { activeMenuSelector } from './features/menuSlice';
 import { getMovieByCategory } from './services/movieService';
 import { IMovie } from './components/Movie/Movie';
 import { IMovieQuery } from './services/movieService';
+import Pagination from '@mui/material/Pagination';
 
 function App() {
   const activeMenu = useSelector(activeMenuSelector);
 
+  const [page, setPage] = useState(1);
   const { isLoading, error, data, refetch } = useQuery<IMovieQuery>(
-    'movies',
-    () => getMovieByCategory(activeMenu?.code || 'now_playing')
+    ['movie', activeMenu?.code, page],
+    () => getMovieByCategory(activeMenu?.code || 'now_playing', page)
   );
 
+  const handlePageChange = (e: React.ChangeEvent<unknown>, p: number) => {
+    setPage(p);
+  };
+
   useEffect(() => {
-    refetch();
-  }, [activeMenu?.code]);
+    console.log('something changed');
+  });
 
   return (
     <Layout>
@@ -45,6 +51,13 @@ function App() {
             )}
           </div>
         )}
+        <Pagination
+          classes={{ outlined: style.pagination }}
+          variant={'outlined'}
+          count={data?.total_pages}
+          color={'primary'}
+          onChange={handlePageChange}
+        />
       </MovieLayout>
     </Layout>
   );
