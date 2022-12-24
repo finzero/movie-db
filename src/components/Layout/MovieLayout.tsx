@@ -5,8 +5,8 @@ import style from './MovieLayout.module.css';
 const MovieLayout = ({ children }: PropsWithChildren) => {
   return (
     <section className={style.movieLayout}>
-      <SearchMovie />
-      <div>{children}</div>
+      {/* <SearchMovie /> */}
+      {children}
     </section>
   );
 };

@@ -1,10 +1,10 @@
-import style from './Sidebar.module.css';
+import style from './MovieCategory.module.css';
 import appStyle from '../../App.module.css';
 import MenuItem, { ICategory } from '../Category/Category';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
-const Sidebar = () => {
+const MovieCategory = () => {
   const menuItems = useSelector((state: RootState) => state.menu);
 
   return (
@@ -19,4 +19,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default MovieCategory;

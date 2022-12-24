@@ -6,10 +6,9 @@
 
 .content {
   background: #222a31;
-  max-width: calc(100vw - 200px);
+  max-width: 100vw;
   overflow: hidden;
   color: #ffffff;
-  margin-left: 200px;
   min-height: 100vh;
 }
 

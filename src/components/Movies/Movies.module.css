@@ -15,17 +15,21 @@
 }
 
 .loading {
-  min-width: calc(100vw - 200px);
+  min-width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.movieListContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 15px;
+  max-height: calc(100vh - 10px);
+  overflow: auto;
 }
 
 @media screen and (max-width: 425px) {
   .movieList {
     justify-content: center;
-  }
-
-  .loading{
-    min-width: 100vw;
   }
 }

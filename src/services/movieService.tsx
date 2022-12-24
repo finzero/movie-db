@@ -18,6 +18,15 @@ export interface IMovieQuery {
   total_results: number;
 }
 
+export interface SearchMovieOptions {
+  query: string;
+  page: number;
+  include_adult?: boolean;
+  region?: string;
+  year?: number;
+  primary_release_year?: number;
+}
+
 export type TMovieCategory =
   | 'now_playing'
   | 'popular'
@@ -44,4 +53,29 @@ export const getMovieByCategory = (
     method: 'get',
     headers,
   }).then((res) => res.json());
+};
+
+export const searchMovie = (param: SearchMovieOptions) => {
+  const queryParam = setQueryParam(param);
+  return fetch(`${BASE_URL}/search/movie${queryParam}`, {
+    method: 'get',
+    headers,
+  }).then((res) => res.json());
+};
+
+const setQueryParam = (obj: any) => {
+  return encodeURI(
+    Object.keys(obj)
+      .filter((field) => obj[field] !== null && obj[field] !== undefined)
+      .map((key) => {
+        if (obj[key] !== null) {
+          let val = obj[key];
+          if (typeof val === 'string') {
+            val = val.trim();
+          }
+          return key + '=' + val;
+        }
+      })
+      .join('&')
+  );
 };

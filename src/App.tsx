@@ -1,10 +1,15 @@
 import Layout from './components/Layout/Layout';
 import Movies from './components/Movies/Movies';
+import { Routes, Route } from 'react-router-dom';
+import MovieDetail from './components/MovieDetail/MovieDetail';
 
 function App() {
   return (
     <Layout>
-      <Movies />
+      <Routes>
+        <Route path="/" element={<Movies />} />
+        <Route path="detail" element={<MovieDetail />} />
+      </Routes>
     </Layout>
   );
 }
