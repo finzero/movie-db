@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { getMovieDetail, poster_base_path } from '../../services/movieService';
-import { generatePath, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Movie from '../Movie/Movie';
 import style from './MovieDetail.module.css';
@@ -70,8 +70,11 @@ const MovieDetail = () => {
           }}
         ></div>
         <div className={style.contentDetail}>
-          <Movie movie={data} />
-          <div style={{ marginLeft: '10px' }}>
+          <Movie
+            movie={data}
+            config={{ showRating: false, enableLink: false }}
+          />
+          <div className={appStyle.ml_2}>
             <MovieTitle title={data.title} />
             <ReleaseYear releaseDate={data.release_date} />
             <Genre genres={data.genres} />

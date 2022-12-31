@@ -9,6 +9,7 @@ import { useQuery } from 'react-query';
 import { activeMenuSelector } from '../../features/menuSlice';
 import { getMovieByCategory, IMovieQuery } from '../../services/movieService';
 import MovieCategory from '../MovieCategory/MovieCategory';
+import { extendSxProp } from '@mui/system';
 
 const Movies = () => {
   const activeMenu = useSelector(activeMenuSelector);
@@ -41,7 +42,11 @@ const Movies = () => {
               <div className={style.movieList}>
                 {data &&
                   data.results.map((movie: IMovie) => (
-                    <Movie key={movie.id} movie={movie} />
+                    <Movie
+                      key={movie.id}
+                      movie={movie}
+                      config={{ enableLink: true, showRating: true }}
+                    />
                   ))}
               </div>
             ) : (

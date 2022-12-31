@@ -1,8 +1,9 @@
 import style from './Movie.module.css';
 import { poster_base_path } from '../../services/movieService';
 import { Link } from 'react-router-dom';
+import React, { PropsWithChildren } from 'react';
 
-export interface IMovie {
+export interface IMovie extends IMovieConfig {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
@@ -19,25 +20,55 @@ export interface IMovie {
   vote_count: number;
 }
 
-const Movie = ({ movie }: { movie: IMovie }) => {
+interface IMovieConfig {
+  showRating: boolean;
+  enableLink: boolean;
+}
+
+const MovieImage = ({
+  movie,
+  config,
+}: {
+  movie: IMovie;
+  config: IMovieConfig;
+}) => (
+  <div className={style.movieItem}>
+    {config.showRating && (
+      <span className={style.movieRating}>{movie.vote_average.toFixed(1)}</span>
+    )}
+    <div className={style.posterContainer}>
+      <img
+        className={style.moviePoster}
+        src={`${poster_base_path + movie.poster_path}`}
+        alt={movie.original_title}
+      />
+    </div>
+  </div>
+);
+
+const MovieWithLink = ({
+  movie,
+  children,
+}: {
+  movie: IMovie;
+  children: React.ReactNode;
+}) => {
   return (
     <Link
       to={`${movie.id}/${movie.original_title.replace(/\s+/g, '-')}`}
       replace={true}
     >
-      <div className={style.movieItem}>
-        <span className={style.movieRating}>
-          {movie.vote_average.toFixed(1)}
-        </span>
-        <div className={style.posterContainer}>
-          <img
-            className={style.moviePoster}
-            src={`${poster_base_path + movie.poster_path}`}
-            alt={movie.original_title}
-          />
-        </div>
-      </div>
+      {children}
     </Link>
+  );
+};
+const Movie = ({ movie, config }: { movie: IMovie; config: IMovieConfig }) => {
+  return config.enableLink ? (
+    <MovieWithLink movie={movie}>
+      <MovieImage movie={movie} config={config} />
+    </MovieWithLink>
+  ) : (
+    <MovieImage movie={movie} config={config} />
   );
 };
 
