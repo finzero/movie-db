@@ -1,5 +1,6 @@
 import style from './Movie.module.css';
 import { poster_base_path } from '../../services/movieService';
+import { Link } from 'react-router-dom';
 
 export interface IMovie {
   adult: boolean;
@@ -20,16 +21,23 @@ export interface IMovie {
 
 const Movie = ({ movie }: { movie: IMovie }) => {
   return (
-    <div key={movie.id} className={style.movieItem}>
-      <span className={style.movieRating}>{movie.vote_average}</span>
-      <div className={style.posterContainer}>
-        <img
-          className={style.moviePoster}
-          src={`${poster_base_path + movie.poster_path}`}
-          alt={movie.original_title}
-        />
+    <Link
+      to={`${movie.id}/${movie.original_title.replace(/\s+/g, '-')}`}
+      replace={true}
+    >
+      <div className={style.movieItem}>
+        <span className={style.movieRating}>
+          {movie.vote_average.toFixed(1)}
+        </span>
+        <div className={style.posterContainer}>
+          <img
+            className={style.moviePoster}
+            src={`${poster_base_path + movie.poster_path}`}
+            alt={movie.original_title}
+          />
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

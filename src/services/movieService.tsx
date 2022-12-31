@@ -55,6 +55,13 @@ export const getMovieByCategory = (
   }).then((res) => res.json());
 };
 
+export const getMovieDetail = (movieId: string) => {
+  return fetch(`${BASE_URL}/movie/${movieId}`, {
+    method: 'get',
+    headers,
+  }).then((res) => res.json());
+};
+
 export const searchMovie = (param: SearchMovieOptions) => {
   const queryParam = setQueryParam(param);
   return fetch(`${BASE_URL}/search/movie${queryParam}`, {
