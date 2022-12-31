@@ -3,6 +3,11 @@ import { poster_base_path } from '../../services/movieService';
 import { Link } from 'react-router-dom';
 import React, { PropsWithChildren } from 'react';
 
+const DEFAULT_MOVIE_CONFIG = {
+  showRating: false,
+  enableLink: false,
+};
+
 export interface IMovie extends IMovieConfig {
   adult: boolean;
   backdrop_path: string;
@@ -62,7 +67,13 @@ const MovieWithLink = ({
     </Link>
   );
 };
-const Movie = ({ movie, config }: { movie: IMovie; config: IMovieConfig }) => {
+const Movie = ({
+  movie,
+  config = DEFAULT_MOVIE_CONFIG,
+}: {
+  movie: IMovie;
+  config?: IMovieConfig;
+}) => {
   return config.enableLink ? (
     <MovieWithLink movie={movie}>
       <MovieImage movie={movie} config={config} />

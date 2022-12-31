@@ -70,10 +70,7 @@ const MovieDetail = () => {
           }}
         ></div>
         <div className={style.contentDetail}>
-          <Movie
-            movie={data}
-            config={{ showRating: false, enableLink: false }}
-          />
+          <Movie movie={data} />
           <div className={appStyle.ml_2}>
             <MovieTitle title={data.title} />
             <ReleaseYear releaseDate={data.release_date} />
