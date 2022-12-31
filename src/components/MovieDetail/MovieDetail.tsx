@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { getMovieDetail, poster_base_path } from '../../services/movieService';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Movie from '../Movie/Movie';
 import style from './MovieDetail.module.css';
 import appStyle from '../../App.module.css';
+import MovieLoader from '../MovieLoader/MovieLoader';
 
 const MovieTitle = ({ title }: any) => (
   <h1 className={appStyle.m_0}>{title}</h1>
@@ -50,36 +51,47 @@ const Overview = ({ overview }: any) => (
 const MovieDetail = () => {
   const { movieId } = useParams<string>();
 
-  const { isLoading, error, data } = useQuery<any>('movie-detail', () =>
+  const { isFetching, error, data } = useQuery<any>('movie-detail', () =>
     getMovieDetail(movieId as string)
   );
 
   useEffect(() => {
-    console.log(data);
-  }, [data]);
+    console.log(isFetching);
+  }, [isFetching]);
 
   return (
     data && (
       <React.Fragment>
-        <div
-          className={style.backdropImage}
-          style={{
-            background: `url(${poster_base_path + data.backdrop_path})`,
-            opacity: '0.1',
-            backgroundSize: 'cover',
-          }}
-        ></div>
-        <div className={style.contentDetail}>
-          <Movie movie={data} />
-          <div className={appStyle.ml_2}>
-            <MovieTitle title={data.title} />
-            <ReleaseYear releaseDate={data.release_date} />
-            <Genre genres={data.genres} />
-            <HomePage data={data.homepage} />
-            <Rating data={data} />
-            <Overview overview={data.overview} />
+        {isFetching ? (
+          <div className={style.backdropImage}>
+            <MovieLoader />
           </div>
-        </div>
+        ) : (
+          <React.Fragment>
+            <div
+              className={style.backdropImage}
+              style={{
+                background: `url(${poster_base_path + data.backdrop_path})`,
+                opacity: '0.1',
+                backgroundSize: 'cover',
+              }}
+            ></div>
+            <div className={style.contentDetail}>
+              <h3>
+                <Link to="/"> &#x3c;</Link>
+              </h3>
+              <Movie movie={data} />
+              <div className={appStyle.ml_2}>
+                <MovieTitle title={data.title} />
+                <ReleaseYear releaseDate={data.release_date} />
+                <Genre genres={data.genres} />
+                <HomePage data={data.homepage} />
+                <Rating data={data} />
+                <Overview overview={data.overview} />
+              </div>
+            </div>
+          </React.Fragment>
+        )}
       </React.Fragment>
     )
   );

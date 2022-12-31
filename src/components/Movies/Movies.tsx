@@ -3,19 +3,20 @@ import Pagination from '@mui/material/Pagination';
 import Movie, { IMovie } from '../Movie/Movie';
 import MovieLayout from '../Layout/MovieLayout';
 import style from './Movies.module.css';
-import movieLoader from '../../assets/5-Film-reel.gif';
+
 import { useSelector } from 'react-redux';
 import { useQuery } from 'react-query';
 import { activeMenuSelector } from '../../features/menuSlice';
 import { getMovieByCategory, IMovieQuery } from '../../services/movieService';
 import MovieCategory from '../MovieCategory/MovieCategory';
 import { extendSxProp } from '@mui/system';
+import MovieLoader from '../MovieLoader/MovieLoader';
 
 const Movies = () => {
   const activeMenu = useSelector(activeMenuSelector);
 
   const [page, setPage] = useState(1);
-  const { isLoading, error, data } = useQuery<IMovieQuery>(
+  const { isFetching, error, data } = useQuery<IMovieQuery>(
     ['movie', activeMenu?.code, page],
     () => getMovieByCategory(activeMenu?.code || 'now_playing', page)
   );
@@ -32,10 +33,8 @@ const Movies = () => {
       <MovieCategory />
       <section className={style.movieListContainer}>
         <h2>{activeMenu?.label}</h2>
-        {isLoading ? (
-          <div className={style.loading}>
-            <img src={movieLoader} alt="Loading" />
-          </div>
+        {isFetching ? (
+          <MovieLoader />
         ) : (
           <div>
             {!error ? (

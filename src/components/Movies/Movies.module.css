@@ -14,18 +14,13 @@
   color: #ffffff;
 }
 
-.loading {
-  min-width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
 .movieListContainer {
   display: flex;
   flex-direction: column;
   padding: 5px 15px;
   max-height: calc(100vh - 10px);
   overflow: auto;
+  width: 100%;
 }
 
 @media screen and (max-width: 425px) {
