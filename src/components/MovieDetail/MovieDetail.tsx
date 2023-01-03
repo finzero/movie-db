@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { getMovieDetail, poster_base_path } from '../../services/movieService';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Movie from '../Movie/Movie';
 import style from './MovieDetail.module.css';
 import appStyle from '../../App.module.css';
 import MovieLoader from '../MovieLoader/MovieLoader';
+import { Link } from 'react-router-dom';
 
 const MovieTitle = ({ title }: any) => (
   <h1 className={appStyle.m_0}>{title}</h1>
@@ -55,9 +56,7 @@ const MovieDetail = () => {
     getMovieDetail(movieId as string)
   );
 
-  useEffect(() => {
-    console.log(isFetching);
-  }, [isFetching]);
+  if (error) return <div>Error Occured, come back later</div>;
 
   return (
     data && (
@@ -69,6 +68,23 @@ const MovieDetail = () => {
         ) : (
           <React.Fragment>
             <div
+              style={{
+                padding: '20px',
+                marginLeft: '20px',
+                cursor: 'pointer',
+                zIndex: 2,
+              }}
+            >
+              <Link
+                style={{
+                  fontWeight: '700',
+                }}
+                to="/"
+              >
+                Movie List
+              </Link>
+            </div>
+            <div
               className={style.backdropImage}
               style={{
                 background: `url(${poster_base_path + data.backdrop_path})`,
@@ -77,9 +93,6 @@ const MovieDetail = () => {
               }}
             ></div>
             <div className={style.contentDetail}>
-              <h3>
-                <Link to="/"> &#x3c;</Link>
-              </h3>
               <Movie movie={data} />
               <div className={appStyle.ml_2}>
                 <MovieTitle title={data.title} />
