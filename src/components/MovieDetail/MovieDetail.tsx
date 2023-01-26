@@ -1,12 +1,12 @@
 import React from 'react';
-import { getMovieDetail, poster_base_path } from '../../services/movieService';
-import { useParams } from 'react-router-dom';
+import { getMovieDetail } from '../../services/movieService';
+import { useParams, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Movie from '../Movie/Movie';
 import style from './MovieDetail.module.css';
 import appStyle from '../../App.module.css';
 import MovieLoader from '../MovieLoader/MovieLoader';
-import { Link } from 'react-router-dom';
+import { POSTER_BASE_PATH } from '../../consts/api';
 
 const MovieTitle = ({ title }: any) => (
   <h1 className={appStyle.m_0}>{title}</h1>
@@ -49,6 +49,29 @@ const Overview = ({ overview }: any) => (
   </div>
 );
 
+// TODO: this should be moved into separate component and change the inline style
+const MovieListLink = () => {
+  return (
+    <div
+      style={{
+        padding: '20px',
+        marginLeft: '20px',
+        cursor: 'pointer',
+        zIndex: 2,
+      }}
+    >
+      <Link
+        style={{
+          fontWeight: '700',
+        }}
+        to="/"
+      >
+        Movie List
+      </Link>
+    </div>
+  );
+};
+
 const MovieDetail = () => {
   const { movieId } = useParams<string>();
 
@@ -67,27 +90,11 @@ const MovieDetail = () => {
           </div>
         ) : (
           <React.Fragment>
-            <div
-              style={{
-                padding: '20px',
-                marginLeft: '20px',
-                cursor: 'pointer',
-                zIndex: 2,
-              }}
-            >
-              <Link
-                style={{
-                  fontWeight: '700',
-                }}
-                to="/"
-              >
-                Movie List
-              </Link>
-            </div>
+            <MovieListLink />
             <div
               className={style.backdropImage}
               style={{
-                background: `url(${poster_base_path + data.backdrop_path})`,
+                background: `url(${POSTER_BASE_PATH + data.backdrop_path})`,
                 opacity: '0.1',
                 backgroundSize: 'cover',
               }}

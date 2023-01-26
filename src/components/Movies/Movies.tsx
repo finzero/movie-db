@@ -1,16 +1,16 @@
 import React, { useCallback, useState } from 'react';
 import Pagination from '@mui/material/Pagination';
-import Movie, { IMovie } from '../Movie/Movie';
+import Movie from '../Movie/Movie';
 import MovieLayout from '../Layout/MovieLayout';
 import style from './Movies.module.css';
 
 import { useSelector } from 'react-redux';
 import { useQuery } from 'react-query';
 import { activeMenuSelector } from '../../features/menuSlice';
-import { getMovieByCategory, IMovieQuery } from '../../services/movieService';
+import { getMovieByCategory } from '../../services/movieService';
 import MovieCategory from '../MovieCategory/MovieCategory';
-import { extendSxProp } from '@mui/system';
 import MovieLoader from '../MovieLoader/MovieLoader';
+import { IMovie, IMovieQuery } from '../../types/movie.type';
 
 const Movies = () => {
   const activeMenu = useSelector(activeMenuSelector);

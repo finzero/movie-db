@@ -4,15 +4,7 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import style from './Category.module.css';
 import { useDispatch } from 'react-redux';
 import { setActiveMenu } from '../../features/menuSlice';
-import { TMovieCategory } from '../../services/movieService';
-
-export interface ICategory {
-  id: number;
-  code: TMovieCategory;
-  isActive: boolean;
-  label: string;
-  link: string;
-}
+import { ICategory } from '../../types/movie.type';
 
 const Category = ({ id, isActive, label, link }: ICategory) => {
   const dispatch = useDispatch();

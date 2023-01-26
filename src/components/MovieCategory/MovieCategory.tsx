@@ -1,8 +1,9 @@
 import style from './MovieCategory.module.css';
 import appStyle from '../../App.module.css';
-import MenuItem, { ICategory } from '../Category/Category';
+import MenuItem from '../Category/Category';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import { ICategory } from '../../types/movie.type';
 
 const MovieCategory = () => {
   const menuItems = useSelector((state: RootState) => state.menu);
