@@ -1,6 +1,6 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../store/store';
-import { ICategory } from '../components/Category/Category';
+import { ICategory } from '../types/movie.type';
 
 const initialState: ICategory[] = [
   {
